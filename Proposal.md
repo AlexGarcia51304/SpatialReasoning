@@ -1,3 +1,20 @@
+---
+title: A "Common Sense" Spatial Reasoning Benchmark for Multimodal Language Models
+exports:
+    - format: pdf
+      template: arxiv_nips
+date: 2026-03-04
+authors:
+  - name: Emily Light
+    affiliations:
+      - University of Rhode Island
+  - name: Ethen Puls
+    affiliations:
+      - University of Rhode Island
+abstract: |
+    abstract text...
+---
+
 # Introduction
 # Concept & Operationalization
 This benchmark will have several exercises to measure LLM's ability to use common-sense spatial reasoning. We define common-sense reasoning as the ability to correctly infer relative orientation, rotation, and spatial displacement of objects under geometric transformations, using either textual descriptions alone or text grounded in visual input. This includes; mental rotation, relative positioning, directional movement inference, and transformation composition. 
