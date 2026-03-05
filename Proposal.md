@@ -63,20 +63,7 @@ Our benchmark wants to shift the focus towards active spatial reasoning, mental 
 # Structure
 The benchmark will contain two broad categories of tasks:
 1. Generic Transformations, as well as and "common sense" style questions as to how transformations alter the interactivity or functionality of objects.
-2. Pattern and algorithmic style questions, in an attempt to measure more complex spatial awareness and competence.
-
-## Generic Transformations
-A series of templated spatial tasks will be presented to the model, with an answer bank containing valid answers. Models will be prompted to respond with a single word from the answer bank. Scoring is binary, questions given the correct answer from the given answer bank are correct. Incorrect answers, or answers containing words from outside of the answer bank are marked incorrect. Scoring will be displayed as total correct/incorrect, as well as by tags (2-Dimensional, 3-Dimensional, transformation only, "common selse" style question, specific object transformed).
-These questions will be either multi modal (image + text) or text-based, and will fit four categories:
-1. 2D Spatial Transformations
-2. 3D Spatial Transformations
-3. 2D Spatial Transformations + Common Sense Style Question
-4. 3D Spatial Transformations + Common Sense Style Question
-
-# Structure
-The benchmark will contain two broad categories of tasks:
-1. Generic Transformations, as well as and "common sense" style questions as to how transformations alter the interactivity or functionality of objects.
-2. Pattern and algorithmic style questions, in an attempt to measure more complex spatial awareness and competence.
+2. Multi-Step Transformation questions, in an attempt to measure more complex spatial awareness and competence.
 
 ## Generic Transformations
 A series of templated spatial tasks will be presented to the model, with an answer bank containing valid answers. Models will be prompted to respond with a single word from the answer bank. Scoring is binary, questions given the correct answer from the given answer bank are correct. Incorrect answers, or answers containing words from outside of the answer bank are marked incorrect. Scoring will be displayed as total correct/incorrect, as well as by tags (2-Dimensional, 3-Dimensional, transformation only, "common selse" style question, specific object transformed).
@@ -109,8 +96,34 @@ A sample text-based question, focusing on "common-sense" usability of objects af
 ### Task Generation Strategy
 Demonstrated in [](#fig1) and [](#fig2), 5-10 generic "template" questions will be designed, and then populated with values to create at least 50 questions. Large language models may be used to generate more questions, and if done, each question will be reviewed for accuracy and the answer will be answered manually by a team member.
 
-## Algorithmic/Pattern Matching
+## Multi-Step Transformations
+Spatial tasks that involve reasoning about a series of transformations to an object will be presented to the model. There will be two types of multi-step transformation tasks.
+
+First, tasks where the model is given a text-based representation of the initial state of an object and a series of transformations to be performed on the object. For these tasks, the model will be prompted to respond with a text-based representation of the resulting state of the object after the transformations. Scoring is binary, only given answers that exactly match the correct answer are correct. Scoring will be displayed as total correct/incorrect.
+
+Second, tasks where the model is given a text-based representation of the initial state of an object and a goal state which can be reached by performing transformations on the object. For these tasks, the model will be prompted to respond with the series of transformations required to reach that goal state. Options for the transformations that may be used will be provided in an answer bank and may be repeated multiple times in the output list. Scoring is based on:
+1. If the answer provided produces the goal state when applied to the initial state of the object, as correct/incorrect
+2. The number of transformation steps the given answer is away from the solution
+3. How optimal the solution was, based on the number of transformation steps:
+$$\frac{Transformation\:Steps\:Taken}{Optimal\:\#\:Transformation\:Steps}$$
 ### Sample Task
+
+```{figure} /content/images/figures/prop_fig3.png
+:label: fig3
+:alt: A resulting state multi-step transformation example
+:align: center
+
+A sample multi-step transformation question asking for the final state. The input numbered die orientation will be varied, along with types and number of rotations being performed.
+```
+
+```{figure} /content/images/figures/prop_fig4.png
+:label: fig4
+:alt: A list of transformations multi-step transformation example
+:align: center
+
+A sample multi-step transformation question asking for a list of transformations. The input 2x2x2 puzzle state will be varied, along with the minimum number of steps required to solve it.
+```
 ### Task Generation Strategy
+Demonstrated in [](#fig3) and [](#fig4), the starting states of the 3D objects, the number of transformations being performed, and minimum number of steps required to complete the tasks will all vary. The input values will be generated by modeling these tasks in software and performing random transformations on them to ensure the states of the 3D objects are valid. Optimal solutions will also be determined using these software representations of the problems by performing breadth first search across the different transformation options until the solved state is found.
 
 
