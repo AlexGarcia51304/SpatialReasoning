@@ -120,7 +120,7 @@ def plot_model_accuracy(analysis_data: dict[str, dict], save_dir: str) -> None:
     print(f"Saved model accuracy plot to {path}")
 
 
-def plot_tag_accuracy(analysis_data: dict[str, dict], save_dir: str, filter_tags: list[str] = None) -> None:
+def plot_tag_accuracy(analysis_data: dict[str, dict], save_dir: str, filter_tags: list[str] = None, tag_plot_title: str = "") -> None:
     """Grouped bar chart: x-axis = tags, one bar group per model."""
     all_tags = filter_tags if filter_tags else sorted(
         {tag for d in analysis_data.values() for tag in d["scores_by_tag"]}
@@ -145,7 +145,7 @@ def plot_tag_accuracy(analysis_data: dict[str, dict], save_dir: str, filter_tags
     ax.set_xticks(x)
     ax.set_xticklabels(all_tags, rotation=15, ha="right")
     ax.set_ylabel("Accuracy")
-    ax.set_title("Per-Tag Accuracy by Model")
+    ax.set_title(tag_plot_title if tag_plot_title else "Per-Tag Accuracy by Model")
     ax.set_ylim(0, 1.05)
     ax.yaxis.set_major_formatter(plt.FuncFormatter(lambda v, _: f"{v:.0%}"))
     ax.legend(title="Model")
@@ -161,7 +161,7 @@ def plot_tag_accuracy(analysis_data: dict[str, dict], save_dir: str, filter_tags
 # Top-level orchestration
 # ---------------------------------------------------------------------------
 
-def analyze_results(output_dir: str, save_dir: str, filter_tags: list[str] = None) -> None:
+def analyze_results(output_dir: str, save_dir: str, filter_tags: list[str] = None, tag_plot_title: str = "", plot_overall_accuracy: bool = True) -> None:
     """Load saved results, compute metrics, save CSV, and generate plots."""
     analysis_data = load_analysis_data(output_dir)
     if not analysis_data:
@@ -170,8 +170,9 @@ def analyze_results(output_dir: str, save_dir: str, filter_tags: list[str] = Non
 
     csv_path = os.path.join(save_dir, "analysis.csv")
     save_analysis_csv(analysis_data, csv_path, filter_tags=filter_tags)
-    plot_model_accuracy(analysis_data, save_dir)
-    plot_tag_accuracy(analysis_data, save_dir, filter_tags=filter_tags)
+    if plot_overall_accuracy:
+        plot_model_accuracy(analysis_data, save_dir)
+    plot_tag_accuracy(analysis_data, save_dir, filter_tags=filter_tags, tag_plot_title=tag_plot_title)
 
 
 # Example/Debugging usage
@@ -180,4 +181,6 @@ if __name__ == "__main__":
         output_dir="./benchmark_redux/results",
         save_dir="./benchmark_redux/analysis",
         filter_tags=[],  # empty = all tags; e.g. ['2d'] to restrict
+        tag_plot_title="Custom Tag Plot Title",
+        plot_overall_accuracy=True
     )
