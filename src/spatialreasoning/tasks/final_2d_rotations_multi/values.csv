@@ -1,0 +1,11 @@
+object,direction,transformation,correct_answer
+boat,north,rotated 135 degrees clockwise then 90 degrees clockwise then 270 degrees clockwise then 270 degrees clockwise,northeast
+train,north,rotated 45 degrees clockwise then 90 degrees clockwise,southeast
+ship,west,rotated 180 degrees counterclockwise then 45 degrees clockwise,southeast
+train,southwest,rotated 90 degrees clockwise then 135 degrees clockwise then 45 degrees counterclockwise,northeast
+boat,southwest,rotated 225 degrees counterclockwise then 45 degrees counterclockwise then 225 degrees clockwise,south
+submarine,northeast,rotated 135 degrees counterclockwise then 225 degrees clockwise then 270 degrees clockwise then 45 degrees clockwise,east
+bicycle,northeast,rotated 45 degrees counterclockwise then 135 degrees counterclockwise,southwest
+helicopter,east,rotated 135 degrees clockwise then 270 degrees counterclockwise then 270 degrees clockwise,southwest
+compass,southeast,rotated 180 degrees counterclockwise then 135 degrees clockwise,east
+drone,north,rotated 45 degrees counterclockwise then 180 degrees counterclockwise,southeast

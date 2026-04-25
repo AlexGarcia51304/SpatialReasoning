@@ -1,0 +1,11 @@
+object,position,distance,direction,another_object,another_position,reference
+book,"(0,-1,-1)",3,backward,lamp,"(-5,-6,5)",Backward
+vase,"(-6,-2,-1)",6,forward,lamp,"(-8,-2,5)",Right
+bowl,"(0,-8,-3)",7,right,bottle,"(2,0,-4)",Down
+mug,"(-5,-6,4)",2,left,key,"(3,0,-7)",Forward
+bottle,"(-5,4,-6)",6,left,shoe,"(3,-2,-6)",Left
+vase,"(1,-6,-1)",8,up,bowl,"(4,0,6)",Backward
+pen,"(3,3,-2)",7,left,clock,"(-6,-3,-1)",Up
+clock,"(4,0,-1)",7,left,bottle,"(-7,-1,-7)",Forward
+key,"(0,-6,-2)",6,backward,bag,"(2,-2,7)",Backward
+bag,"(-4,0,-4)",3,backward,bottle,"(0,5,4)",Backward

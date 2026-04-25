@@ -1,0 +1,11 @@
+object,direction,rotationamount,rotationdirection,rotationaxis,reference
+boat,north,270,counterclockwise,X,up
+car,up,180,clockwise,X,down
+ship,down,270,counterclockwise,X,north
+cannon,up,180,clockwise,X,down
+drone,north,90,counterclockwise,X,down
+cannon,up,90,counterclockwise,X,north
+bicycle,down,270,counterclockwise,Z,west
+ship,down,90,clockwise,Z,west
+helicopter,east,90,counterclockwise,Z,up
+car,up,270,clockwise,Z,west
